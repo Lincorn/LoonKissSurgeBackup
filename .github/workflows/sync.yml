@@ -13,6 +13,11 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v2
 
+      - name: Set up Git
+        run: |
+          git config --global user.name "Lincorn"
+          git config --global user.email "lemonas@example.com"
+
       - name: Clone the target repository
         run: |
           git clone https://github.com/QingRex/LoonKissSurge.git
