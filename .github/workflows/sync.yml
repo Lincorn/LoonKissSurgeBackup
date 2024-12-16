@@ -2,7 +2,7 @@ name: Sync LoonKissSurge
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # 每天午夜12点执行一次（UTC时间）
+    - cron: '0 8 * * *'  # 每天午夜8点执行一次（UTC时间）
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -26,11 +26,11 @@ jobs:
 
       - name: Copy the files to current repository
         run: |
-          cp -r LoonKissSurge/* .  # 将文件复制到当前仓库
+          cp -r LoonKissSurge/* .
+          ls -la  # 检查当前目录内容
 
       - name: Commit changes
         run: |
-          git add .
-          git commit -m "Sync latest changes from LoonKissSurge"
+          git add -A  # 强制添加所有变化
+          git commit -m "Sync latest changes from LoonKissSurge" || echo "No changes to commit"
           git push origin main  # 推送到当前仓库
-
